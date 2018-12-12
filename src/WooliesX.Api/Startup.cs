@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using MediatR;
 using WooliesX.Domain.Models;
+using WooliesX.Domain.Ports;
+using WooliesX.Data;
 
 namespace WooliesX.Api
 {
@@ -30,7 +32,7 @@ namespace WooliesX.Api
             var config = new ConfigurationSettings();
             Configuration.GetSection("WooliesXUser").Bind(config);
             services.AddSingleton<ConfigurationSettings>(config);
-
+            services.AddTransient<IProductsRepository, ProductsRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

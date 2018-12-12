@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WooliesX.Domain", "WooliesX
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WooliesX.Integration.Tests", "WooliesX.Integration.Tests\WooliesX.Integration.Tests.csproj", "{120C3C42-4D42-4DD4-B155-D1DA882CB14D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WooliesX.Data", "WooliesX.Data\WooliesX.Data.csproj", "{7F412D30-5FCB-4F6D-B06E-810589A20552}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,5 +60,17 @@ Global
 		{120C3C42-4D42-4DD4-B155-D1DA882CB14D}.Release|x64.Build.0 = Release|Any CPU
 		{120C3C42-4D42-4DD4-B155-D1DA882CB14D}.Release|x86.ActiveCfg = Release|Any CPU
 		{120C3C42-4D42-4DD4-B155-D1DA882CB14D}.Release|x86.Build.0 = Release|Any CPU
+		{7F412D30-5FCB-4F6D-B06E-810589A20552}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F412D30-5FCB-4F6D-B06E-810589A20552}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F412D30-5FCB-4F6D-B06E-810589A20552}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7F412D30-5FCB-4F6D-B06E-810589A20552}.Debug|x64.Build.0 = Debug|Any CPU
+		{7F412D30-5FCB-4F6D-B06E-810589A20552}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7F412D30-5FCB-4F6D-B06E-810589A20552}.Debug|x86.Build.0 = Debug|Any CPU
+		{7F412D30-5FCB-4F6D-B06E-810589A20552}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F412D30-5FCB-4F6D-B06E-810589A20552}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F412D30-5FCB-4F6D-B06E-810589A20552}.Release|x64.ActiveCfg = Release|Any CPU
+		{7F412D30-5FCB-4F6D-B06E-810589A20552}.Release|x64.Build.0 = Release|Any CPU
+		{7F412D30-5FCB-4F6D-B06E-810589A20552}.Release|x86.ActiveCfg = Release|Any CPU
+		{7F412D30-5FCB-4F6D-B06E-810589A20552}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
