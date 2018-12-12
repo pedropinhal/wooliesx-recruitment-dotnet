@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
+using MediatR;
+using WooliesX.Domain.Models;
 
 namespace WooliesX.Api
 {
@@ -18,7 +21,16 @@ namespace WooliesX.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc()
+            .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+            .AddJsonOptions(opt => opt.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Utc);
+
+            services.AddMediatR(typeof(Domain.DomainModule).Assembly);
+
+            var config = new ConfigurationSettings();
+            Configuration.GetSection("WooliesXUser").Bind(config);
+            services.AddSingleton<ConfigurationSettings>(config);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
