@@ -13,8 +13,8 @@ namespace WooliesX.Integration.Tests
     {
         private HttpResponseMessage _response;
         private UserResponse _view;
-        private string _name = "name";
-        private string _token = "token";
+        private string _name = "Pedro Pinhal";
+        private string _token = "3495257d-c2f0-4a4f-a6ec-58d6d15f822e";
 
 
         [OneTimeSetUp]
