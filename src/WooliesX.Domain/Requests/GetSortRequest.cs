@@ -33,9 +33,21 @@ namespace WooliesX.Domain.Requests
             {
                 var shopperHistory = await _shopperHistoryRepository.GetCustomerHistory();
                 var shopperHistoryProducts = shopperHistory.SelectMany(s => s.Products).ToList();
-                var popularProducts = shopperHistoryProducts.GroupBy(p => p.Name, p => p.Quantity, (key, g) =>
-                     new Product { Name = key, Quantity = g.Sum(), Price = shopperHistoryProducts.Find(l => l.Name == key).Price }
-                ).OrderByDescending(o => o.Quantity).ToList();
+
+                var popularProducts = shopperHistoryProducts
+                    .GroupBy(
+                        p => p.Name,
+                        p => p.Quantity,
+                        (key, group) => new
+                        {
+                            Name = key,
+                            Quantity = group.Sum(),
+                            Price = shopperHistoryProducts.Find(l => l.Name == key).Price
+                        }
+                    )
+                    .OrderByDescending(o => o.Quantity)
+                    .Select(s => new Product { Name = s.Name, Price = s.Price })
+                    .ToList();
 
                 return new SortResponse { Products = popularProducts };
             }

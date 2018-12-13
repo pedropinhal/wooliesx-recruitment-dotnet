@@ -26,30 +26,30 @@ namespace WooliesX.Domain.Tests
                     CustomerId = 1,
                     Products =
                     new List<Product>() {
-                        new Product { Name = "Item1", Quantity = 1 },
-                        new Product { Name = "Item2", Quantity = 1 }
+                        new Product { Name = "Item1", Quantity = 1, Price = 1},
+                        new Product { Name = "Item2", Quantity = 1, Price = 2}
                     }
                 },
                 new ShopperHistory {
                     CustomerId = 2,
                     Products =
                     new List<Product>() {
-                        new Product { Name = "Item3", Quantity = 1 },
-                        new Product { Name = "Item4", Quantity = 1 }
+                        new Product { Name = "Item3", Quantity = 1, Price = 3 },
+                        new Product { Name = "Item4", Quantity = 1, Price = 4 }
                     }
                 },
                 new ShopperHistory {
                     CustomerId = 3,
                     Products =
                     new List<Product>() {
-                        new Product { Name = "Item3", Quantity = 2 }
+                        new Product { Name = "Item3", Quantity = 2, Price = 3 }
                     }
                 },
                 new ShopperHistory {
                     CustomerId = 1,
                     Products =
                     new List<Product>() {
-                        new Product { Name = "Item2", Quantity = 1 }
+                        new Product { Name = "Item2", Quantity = 1, Price = 2 }
                     }
                 }
             };
@@ -72,16 +72,16 @@ namespace WooliesX.Domain.Tests
         public void SortShouldBeCorrect()
         {
             Assert.That(_sortResponse.Products[0].Name, Is.EqualTo("Item3"));
-            Assert.That(_sortResponse.Products[0].Quantity, Is.EqualTo(3));
+            Assert.That(_sortResponse.Products[0].Price, Is.EqualTo(3));
 
             Assert.That(_sortResponse.Products[1].Name, Is.EqualTo("Item2"));
-            Assert.That(_sortResponse.Products[1].Quantity, Is.EqualTo(2));
+            Assert.That(_sortResponse.Products[1].Price, Is.EqualTo(2));
 
             Assert.That(_sortResponse.Products[2].Name, Is.EqualTo("Item1"));
-            Assert.That(_sortResponse.Products[2].Quantity, Is.EqualTo(1));
+            Assert.That(_sortResponse.Products[2].Price, Is.EqualTo(1));
 
             Assert.That(_sortResponse.Products[3].Name, Is.EqualTo("Item4"));
-            Assert.That(_sortResponse.Products[3].Quantity, Is.EqualTo(1));
+            Assert.That(_sortResponse.Products[3].Price, Is.EqualTo(4));
         }
 
         [Test]
