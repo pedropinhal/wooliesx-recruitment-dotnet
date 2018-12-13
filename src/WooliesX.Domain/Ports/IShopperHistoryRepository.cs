@@ -6,6 +6,6 @@ namespace WooliesX.Domain.Ports
 {
     public interface IShopperHistoryRepository
     {
-        Task<ShopperHistory> GetCustomerHistory();
+        Task<List<ShopperHistory>> GetCustomerHistory();
     }
 }

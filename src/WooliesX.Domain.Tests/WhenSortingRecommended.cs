@@ -16,18 +16,29 @@ namespace WooliesX.Domain.Tests
     {
         private SortResponse _sortResponse;
         private Mock<IShopperHistoryRepository> _shopperHistoryRepository;
-        private ShopperHistory _model;
+        private List<ShopperHistory> _model;
 
         [OneTimeSetUp]
         public async Task Setup()
         {
-            _model = new ShopperHistory {
-                CustomerId = 123,
-                Products = 
-                new List<Product>() {
-                new Product { Name = "Item1" },
-                new Product { Name = "Item2" }
-            }};
+            _model = new List<ShopperHistory> {
+                new ShopperHistory {
+                    CustomerId = 1,
+                    Products =
+                    new List<Product>() {
+                        new Product { Name = "Item1", Quantity = 1 },
+                        new Product { Name = "Item2", Quantity = 2 }
+                    }
+                },
+                new ShopperHistory {
+                    CustomerId = 2,
+                    Products =
+                    new List<Product>() {
+                        new Product { Name = "Item3", Quantity = 1 },
+                        new Product { Name = "Item4", Quantity = 3 }
+                    }
+                }
+            };
 
             _shopperHistoryRepository = new Mock<IShopperHistoryRepository>();
             _shopperHistoryRepository.Setup(r => r.GetCustomerHistory()).ReturnsAsync(_model);
@@ -40,7 +51,7 @@ namespace WooliesX.Domain.Tests
         public void SortResponseShouldNotBeNull()
         {
             Assert.That(_sortResponse, Is.Not.Null);
-            Assert.That(_sortResponse.Products.Count, Is.EqualTo(_model.Products.Count));
+            Assert.That(_sortResponse.Products.Count, Is.EqualTo(4));
         }
 
         [Test]

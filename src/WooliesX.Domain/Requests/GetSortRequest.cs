@@ -5,6 +5,7 @@ using WooliesX.Domain.Responses;
 using WooliesX.Domain.Models;
 using WooliesX.Domain.Ports;
 using System;
+using System.Linq;
 
 namespace WooliesX.Domain.Requests
 {
@@ -31,7 +32,8 @@ namespace WooliesX.Domain.Requests
             if (request.SortOption.Equals("Recommended", StringComparison.InvariantCultureIgnoreCase))
             {
                 var shopperHistory = await _shopperHistoryRepository.GetCustomerHistory();
-                return new SortResponse { Products = shopperHistory.Products };
+                var list = shopperHistory.SelectMany(s => s.Products).ToList();
+                return new SortResponse { Products = list };
             }
 
             var products = await _productsRepository.GetProducts();

@@ -17,10 +17,10 @@ namespace WooliesX.Data
             _configurationSettings = configurationSettings;
         }
 
-        public async Task<ShopperHistory> GetCustomerHistory()
+        public async Task<List<ShopperHistory>> GetCustomerHistory()
         {
             var url = new Uri($"{_configurationSettings.ApiHost}/api/resource/shopperHistory?token={_configurationSettings.Token}");
-            var shopperHistory = await _httpClient.GetAsync<ShopperHistory>(url);
+            var shopperHistory = await _httpClient.GetAsync<List<ShopperHistory>>(url);
             return shopperHistory;
         }
     }
