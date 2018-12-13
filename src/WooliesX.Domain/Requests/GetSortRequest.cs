@@ -32,8 +32,12 @@ namespace WooliesX.Domain.Requests
             if (request.SortOption.Equals("Recommended", StringComparison.InvariantCultureIgnoreCase))
             {
                 var shopperHistory = await _shopperHistoryRepository.GetCustomerHistory();
-                var list = shopperHistory.SelectMany(s => s.Products).ToList();
-                return new SortResponse { Products = list };
+                var shopperHistoryProducts = shopperHistory.SelectMany(s => s.Products).ToList();
+                var popularProducts = shopperHistoryProducts.GroupBy(p => p.Name, p => p.Quantity, (key, g) =>
+                     new Product { Name = key, Quantity = g.Sum(), Price = shopperHistoryProducts.Find(l => l.Name == key).Price }
+                ).ToList();
+
+                return new SortResponse { Products = popularProducts };
             }
 
             var products = await _productsRepository.GetProducts();
