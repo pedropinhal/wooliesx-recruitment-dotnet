@@ -24,9 +24,9 @@ namespace WooliesX.Api.Controllers
             {
                 return BadRequest(sortOption);
             }
-            
-            var user = await _mediator.Send(new GetSortRequest { SortOption = sortOption });
-            return Ok(user);
+
+            var sortResponse = await _mediator.Send(new GetSortRequest { SortOption = sortOption });
+            return Ok(sortResponse.Products);
         }
     }
 }

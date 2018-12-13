@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using WooliesX.Domain.Responses;
 using Newtonsoft.Json;
 using NUnit.Framework;
+using System.Collections.Generic;
+using WooliesX.Domain.Models;
 
 namespace WooliesX.Integration.Tests
 {
@@ -12,7 +14,7 @@ namespace WooliesX.Integration.Tests
     public class WhenSortingWithoutProvidingSortOption : ApiTestBase
     {
         private HttpResponseMessage _response;
-        private SortResponse _view;
+        private List<Product> _view;
 
         [OneTimeSetUp]
         public async Task Setup()
@@ -22,7 +24,7 @@ namespace WooliesX.Integration.Tests
                 .GetAsync();
 
             var content = await _response.Content.ReadAsStringAsync();
-            _view = JsonConvert.DeserializeObject<SortResponse>(content);
+            _view = JsonConvert.DeserializeObject<List<Product>>(content);
         }
 
         [Test]
