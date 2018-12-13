@@ -8,5 +8,10 @@
     <ProjectReference Include="..\WooliesX.Domain\WooliesX.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Http" Version="2.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+  </ItemGroup>
+
 
 </Project>

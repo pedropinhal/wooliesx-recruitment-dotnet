@@ -1,12 +1,10 @@
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using WooliesX.Domain.Responses;
-using System.Linq;
 using WooliesX.Domain.Models;
-using System.Collections.Generic;
 using WooliesX.Domain.Ports;
+using System;
 
 namespace WooliesX.Domain.Requests
 {
@@ -19,16 +17,41 @@ namespace WooliesX.Domain.Requests
     {
         private readonly ConfigurationSettings _configurationSettings;
         private readonly IProductsRepository _productsRepository;
+        private readonly IShopperHistoryRepository _shopperHistoryRepository;
 
-        public GetSortRequestHandler(ConfigurationSettings configurationSettings, IProductsRepository productsRepository)
+        public GetSortRequestHandler(IProductsRepository productsRepository,
+            IShopperHistoryRepository shopperHistoryRepository)
         {
-            _configurationSettings = configurationSettings;
             _productsRepository = productsRepository;
+            _shopperHistoryRepository = shopperHistoryRepository;
         }
 
         public async Task<SortResponse> Handle(GetSortRequest request, CancellationToken cancellationToken)
         {
+            if (request.SortOption.Equals("Recommended", StringComparison.InvariantCultureIgnoreCase))
+            {
+                var shopperHistory = await _shopperHistoryRepository.GetCustomerHistory();
+                return new SortResponse { Products = shopperHistory.Products };
+            }
+
             var products = await _productsRepository.GetProducts();
+
+            switch (request.SortOption)
+            {
+                case "Low":
+                    products.Sort((x, y) => x.Price.CompareTo(y.Price));
+                    break;
+                case "High":
+                    products.Sort((x, y) => y.Price.CompareTo(x.Price));
+                    break;
+                case "Ascending":
+                    products.Sort((x, y) => x.Name.CompareTo(y.Name));
+                    break;
+                case "Descending":
+                    products.Sort((x, y) => y.Name.CompareTo(x.Name));
+                    break;
+            }
+
             return new SortResponse { Products = products };
         }
     }
