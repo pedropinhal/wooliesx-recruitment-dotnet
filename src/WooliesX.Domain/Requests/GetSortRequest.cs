@@ -16,7 +16,6 @@ namespace WooliesX.Domain.Requests
 
     public class GetSortRequestHandler : IRequestHandler<GetSortRequest, SortResponse>
     {
-        private readonly ConfigurationSettings _configurationSettings;
         private readonly IProductsRepository _productsRepository;
         private readonly IShopperHistoryRepository _shopperHistoryRepository;
 
