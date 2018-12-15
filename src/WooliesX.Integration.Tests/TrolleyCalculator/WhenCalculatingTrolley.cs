@@ -35,7 +35,7 @@ namespace WooliesX.Integration.Tests
                 },
                 Specials = new List<Api.Models.Special>
                 {
-                    new Api.Models.Special 
+                    new Api.Models.Special
                     {
                         Quantities = new List<Quantity>
                         {
